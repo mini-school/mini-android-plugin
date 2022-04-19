@@ -4,7 +4,7 @@ MAINTAINER Overhang.io <contact@overhang.io>
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt update && \
   apt upgrade -y && \
-  apt install -y wget unzip git openjdk-8-jre openjdk-8-jdk
+  apt install -y wget unzip git openjdk-11-jre openjdk-11-jdk
 
 RUN mkdir /app
 
@@ -23,12 +23,12 @@ RUN wget https://dl.google.com/android/repository/commandlinetools-linux-${ANDRO
 # Accept licenses
 # https://developer.android.com/studio/command-line/sdkmanager
 # Check target version: https://github.com/edx/edx-app-android/blob/master/constants.gradle
-ARG ANDROID_API_LEVEL=29
+ARG ANDROID_API_LEVEL=30
 RUN yes | /app/android-sdk/cmdline-tools/bin/sdkmanager --sdk_root=${ANDROID_HOME} --install "platforms;android-$ANDROID_API_LEVEL" 1> /dev/null
 
 # Install android app repo
-ARG ANDROID_APP_REPOSITORY=https://github.com/edx/edx-app-android
-ARG ANDROID_APP_VERSION=release/{{ ANDROID_APP_VERSION }}
+ARG ANDROID_APP_REPOSITORY=https://github.com/mini-school/edx-app-android-fork
+ARG ANDROID_APP_VERSION=master
 RUN git clone $ANDROID_APP_REPOSITORY --branch $ANDROID_APP_VERSION /app/edx-app-android
 WORKDIR /app/edx-app-android
 
