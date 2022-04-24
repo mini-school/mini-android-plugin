@@ -17,6 +17,6 @@ RUN ./gradlew assembleProdRelease
 
 #### File server to serve apk file
 FROM docker.io/caddy:2.4.3-alpine as production
-COPY --from=build /app/edx-app-android/OpenEdXMobile/build/outputs/apk/prod/{{ "release" if ANDROID_ENABLE_RELEASE_MODE else "debuggable" }}/edx-{{ "release" if ANDROID_ENABLE_RELEASE_MODE else "debuggable" }}-{{ ANDROID_APP_VERSION }}.apk /srv/app.apk
+#COPY --from=build /app/edx-app-android/OpenEdXMobile/build/outputs/apk/prod/{{ "release" if ANDROID_ENABLE_RELEASE_MODE else "debuggable" }}/edx-{{ "release" if ANDROID_ENABLE_RELEASE_MODE else "debuggable" }}-{{ ANDROID_APP_VERSION }}.apk /srv/app.apk
 COPY --from=build /app/edx-app-android/OpenEdXMobile/build/outputs/apk/prod/release/edx-release-0.0.1.apk /srv/app.apk
 CMD caddy file-server --listen=:8000 --root=/srv
