@@ -13,7 +13,7 @@ def load_readme():
 def load_about():
     about = {}
     with io.open(
-        os.path.join(HERE, "tutorandroid", "__about__.py"),
+        os.path.join(HERE, "tutorandroidCustom", "__about__.py"),
         "rt",
         encoding="utf-8",
     ) as f:
@@ -25,16 +25,16 @@ ABOUT = load_about()
 
 
 setup(
-    name="tutor-android",
+    name="tutor-android-custom",
     version=ABOUT["__version__"],
-    url="https://github.com/overhangio/tutor-android",
+    url="https://github.com/minischoolX/tutor-android",
     project_urls={
-        "Code": "https://github.com/overhangio/tutor-android",
-        "Issue tracker": "https://github.com/overhangio/tutor-android/issues",
+        "Code": "https://github.com/minischoolX/tutor-android",
+        "Issue tracker": "https://github.com/minischoolX/tutor-android/issues",
     },
     license="AGPLv3",
     author="Overhang.IO",
-    description="android plugin for Tutor",
+    description="androidCustom plugin for Tutor",
     long_description=load_readme(),
     packages=find_packages(exclude=["tests*"]),
     include_package_data=True,
@@ -42,7 +42,7 @@ setup(
     install_requires=["tutor>=13.0.0,<14.0.0"],
     entry_points={
         "tutor.plugin.v0": [
-            "android = tutorandroid.plugin"
+            "androidCustom = tutorandroid.plugin"
         ]
     },
     classifiers=[
